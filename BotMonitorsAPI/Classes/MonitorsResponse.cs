@@ -1,51 +1,95 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace BotMonitorsAPI.Classes
 {
-    public class MonitorsResponse
+    public partial class MonitorsResponse
     {
-        public string stat { get; set; }
-        public Pagination pagination { get; set; }
-        public List<Monitor> monitors { get; set; }
+        [JsonProperty("stat")]
+        public string Stat { get; set; }
+
+        [JsonProperty("pagination")]
+        public Pagination Pagination { get; set; }
+
+        [JsonProperty("monitors")]
+        public Monitor[] Monitors { get; set; }
     }
 
-    public class Monitor
+    public partial class Monitor
     {
-        public int id { get; set; }
-        public string friendly_name { get; set; }
-        public string url { get; set; }
-        public int type { get; set; }
-        public string sub_type { get; set; }
-        public string keyword_type { get; set; }
-        public int? keyword_case_type { get; set; }
-        public string keyword_value { get; set; }
-        public string http_username { get; set; }
-        public string http_password { get; set; }
-        public string port { get; set; }
-        public int interval { get; set; }
-        public int status { get; set; }
-        public int create_datetime { get; set; }
-        public int monitor_group { get; set; }
-        public int is_group_main { get; set; }
-        public List<Log> logs { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("friendly_name")]
+        public string FriendlyName { get; set; }
+
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
+
+        [JsonProperty("type")]
+        public long Type { get; set; }
+
+        [JsonProperty("sub_type")]
+        public string SubType { get; set; }
+
+        [JsonProperty("keyword_type")]
+        public string KeywordType { get; set; }
+
+        [JsonProperty("keyword_case_type")]
+        public string KeywordCaseType { get; set; }
+
+        [JsonProperty("keyword_value")]
+        public string KeywordValue { get; set; }
+
+        [JsonProperty("http_username")]
+        public string HttpUsername { get; set; }
+
+        [JsonProperty("http_password")]
+        public string HttpPassword { get; set; }
+
+        [JsonProperty("port")]
+        public string Port { get; set; }
+
+        [JsonProperty("interval")]
+        public long Interval { get; set; }
+
+        [JsonProperty("status")]
+        public long Status { get; set; }
+
+        [JsonProperty("create_datetime")]
+        public long CreateDatetime { get; set; }
+
+        [JsonProperty("monitor_group")]
+        public long MonitorGroup { get; set; }
+
+        [JsonProperty("is_group_main")]
+        public long IsGroupMain { get; set; }
+
+        [JsonProperty("logs")]
+        public Log[] Logs { get; set; }
     }
 
-    public class Pagination
+    public partial class Log
     {
-        public int offset { get; set; }
-        public int limit { get; set; }
-        public int total { get; set; }
+        [JsonProperty("type")]
+        public long Type { get; set; }
+
+        [JsonProperty("datetime")]
+        public long Datetime { get; set; }
+
+        [JsonProperty("duration")]
+        public long Duration { get; set; }
     }
 
-    public class Log
+    public partial class Pagination
     {
-        public int type { get; set; }
-        public int datetime { get; set; }
-        public int duration { get; set; }
-    }
+        [JsonProperty("offset")]
+        public long Offset { get; set; }
 
+        [JsonProperty("limit")]
+        public long Limit { get; set; }
+
+        [JsonProperty("total")]
+        public long Total { get; set; }
+    }
 }

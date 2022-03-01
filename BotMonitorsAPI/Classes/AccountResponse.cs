@@ -1,24 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace BotMonitorsAPI.Classes
 {
-    public class AccountResponse
+    public partial class AccountResponse
     {
-        public string stat { get; set; }
-        public Account account { get; set; }
+        [JsonProperty("stat")]
+        public string Stat { get; set; }
+
+        [JsonProperty("account")]
+        public Account Account { get; set; }
     }
 
-    public class Account
+    public partial class Account
     {
-        public string email { get; set; }
-        public int monitor_limit { get; set; }
-        public int monitor_interval { get; set; }
-        public int up_monitors { get; set; }
-        public int down_monitors { get; set; }
-        public int paused_monitors { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("monitor_limit")]
+        public long MonitorLimit { get; set; }
+
+        [JsonProperty("monitor_interval")]
+        public long MonitorInterval { get; set; }
+
+        [JsonProperty("up_monitors")]
+        public long UpMonitors { get; set; }
+
+        [JsonProperty("down_monitors")]
+        public long DownMonitors { get; set; }
+
+        [JsonProperty("paused_monitors")]
+        public long PausedMonitors { get; set; }
     }
 }
