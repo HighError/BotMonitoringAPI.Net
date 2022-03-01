@@ -25,4 +25,12 @@ namespace BotMonitorsAPI.Configures
         IMAP = 6,
         Custom = 99
     }
+    public enum MonitorStatus
+    {
+        Paused = 0,
+        NotYetChecked = 1,
+        Up = 2,
+        SeemsDown = 8,
+        Down = 9,
+    }
 }

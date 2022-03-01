@@ -64,7 +64,7 @@ namespace BotMonitorsAPI
         /// New monitors of any type can be created using this method.
         /// </summary>
         /// <param name="configure">Object BotMonitors.Configure.NewMonitorConfigure</param>
-        /// <returns></returns>
+        /// <returns>Object BotMonitors.Classes.NewMonitorResponse</returns>
         public static async Task<NewMonitorResponse> NewMonitor(NewMonitorConfigure configure)
         {
             if (configure.Type == MonitorType.Ping && configure.SubType == null)
@@ -84,6 +84,24 @@ namespace BotMonitorsAPI
             var response = await client.PostAsync(request);
 
             return DeserializeJson<NewMonitorResponse>(response.Content);
+        }
+        /// <summary>
+        /// Monitors can be deleted using this method.
+        /// </summary>
+        /// <param name="id">The ID of the monitor to be deleted</param>
+        /// <returns>Object BotMonitors.Classes.RemoveMonitorResponse</returns>
+        public static async Task<RemoveMonitorResponse> RemoveMonitor(string id)
+        {
+            var request = new RestRequest("editMonitor")
+                .AddHeader("content-type", "application/x-www-form-urlencoded")
+                .AddHeader("cache-control", "no-cache")
+                .AddParameter("api_key", API_KEY)
+                .AddParameter("format", "json")
+                .AddParameter("id", id);
+
+            var response = await client.PostAsync(request);
+
+            return DeserializeJson<RemoveMonitorResponse>(response.Content);
         }
     }
 }
